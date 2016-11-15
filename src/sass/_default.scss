@@ -1,0 +1,2 @@
+$button-background-default: map-get($colors-base, 'blue') !default;
+$button-background-hover: darken($button-background-default, 10%) !default;

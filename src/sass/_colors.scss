@@ -1,0 +1,73 @@
+$colors-base: (
+  'white': #fff,
+  'grey': #939393,
+  'gray': #353535,
+  'black': #000,
+  'yellow': #ddb500,
+  'orange': #dd6a22,
+  'red': #882121,
+  'purple': #672299,
+  'blue': #215288,
+  'teal': #228282,
+  'green': #266623,
+  'brown': #60421d,
+  'pink': #cc4691,
+);
+
+$colors-modifiers: (
+  'lightest': 20%,
+  'lighter': 10%,
+  'darker': 10%,
+  'darkest': 20%,
+);
+
+
+@each $color-name, $color in $colors-base {
+  $current-color: #fff;
+  @if $color-name == 'white' or $color-name == 'black' {
+    .#{$color-name} {
+      background-color: $color;
+    }
+
+    .text-#{$color-name} {
+      color: $color;
+    }
+  } @else {
+    .#{$color-name} {
+      background-color: $color !important;
+
+      &.btn:hover {
+        background-color: darken($color, 5%) !important;
+      }
+    }
+
+    .text-#{$color-name} {
+      color: $color;
+    }
+
+    @each $color-modifier, $amount in $colors-modifiers {
+      .#{$color-name}-#{$color-modifier} {
+        @if $color-modifier == 'lighter' or $color-modifier == 'lightest' {
+          $current-color: lighten($color, $amount);
+          background-color: $current-color !important;
+        } @else if $color-modifier == 'darker' or $color-modifier == 'darkest' {
+          $current-color: darken($color, $amount);
+          background-color: $current-color !important;
+        }
+
+        &.btn:hover {
+          background-color: darken($current-color, 5%) !important;
+        }
+      }
+
+      .text-#{$color-name}-#{$color-modifier} {
+        @if $color-modifier == 'lighter' or $color-modifier == 'lightest' {
+          color: lighten($color, $amount);
+        } @else if $color-modifier == 'darker' or $color-modifier == 'darkest' {
+          color: darken($color, $amount);
+        }
+      }
+
+    }
+  }
+}

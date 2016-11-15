@@ -1,0 +1,44 @@
+@function set-notification-text-color($color) {
+  @if (lightness($color) > 60) {
+    @return map-get($colors-base, 'black');
+  } @else {
+    @return map-get($colors-base, 'white');
+  }
+}
+
+.btn {
+  display: block;
+  min-width: 200px;
+  height: 40px;
+  margin: 10px;
+  padding: 0 40px;
+  transition: background-color .1s linear, box-shadow .1s linear;
+  border: 0;
+  background-color: $button-background-default;
+  color: map-get($colors-base, 'white');
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: map-get($colors-base, 'grey') 0 1px 3px;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  &.flat {
+    box-shadow: none;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  &:hover {
+    background-color: $button-background-hover !important;
+  }
+}
+
+.btn:hover {
+  transition: background-color .1s linear, box-shadow .1s linear;
+  color: map-get($colors-base, 'white');
+  box-shadow: map-get($colors-base, 'gray') 0 1px 3px;
+}
