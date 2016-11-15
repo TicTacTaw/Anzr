@@ -25,7 +25,7 @@ gulp.task('sass:watch', () => {
 });
 
 gulp.task('html:watch', () => {
-    gulp.watch('./examples/*.html', gulp.series(breload));
+    gulp.watch('./*.html', gulp.series(breload));
 });
 
 gulp.task('fonts:copy', () => {
